@@ -1,0 +1,8 @@
+language: java
+dist: trusty
+cache:
+  directories:
+    - $HOME/.m2
+jdk:
+  - openjdk8
+script: ./build/mvn -Pyarn -Phive -Phive-thriftserver -DskipTests clean package
