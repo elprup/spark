@@ -10,4 +10,5 @@ before_install:
   - tar xzvf apache-maven-3.6.3-bin.tar.gz
   - export PATH=`pwd`/apache-maven-3.6.3/bin:$PATH
   - mvn -v
-script: ./build/mvn -Pyarn -Phive -Phive-thriftserver -DskipTests clean package
+script: ./dev/make-distribution.sh --name custom-spark --pip --r --tgz -Psparkr -Phive -Phive-thriftserver -Pmesos -Pyarn -Pkubernetes 
+install: travis_wait 60 mvn install
