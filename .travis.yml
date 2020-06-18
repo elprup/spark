@@ -18,7 +18,7 @@ before_install:
   - export MAVEN_OPTS="-Xmx2g -XX:ReservedCodeCacheSize=1g"
   - mvn -v
 
-install: ./dev/make-distribution.sh --name custom-spark --pip --tgz -Phive -Phive-thriftserver -Pmesos -Pyarn -Pkubernetes 
+install: ./dev/make-distribution.sh --name custom-spark --pip --tgz -Phive -Phive-thriftserver -Pyarn
 
 deploy:
   provider: releases
