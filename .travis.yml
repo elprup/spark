@@ -11,7 +11,7 @@ jdk:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get -y python3-setuptools
+  - sudo apt-get -y install python3-setuptools
   - wget https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz 
   - tar xzvf apache-maven-3.6.3-bin.tar.gz
   - export PATH=`pwd`/apache-maven-3.6.3/bin:$PATH
