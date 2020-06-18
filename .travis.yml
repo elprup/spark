@@ -1,13 +1,26 @@
 language: java
+
 dist: trusty
+
 cache:
   directories:
     - $HOME/.m2
+
 jdk:
   - openjdk8
+
 before_install:
   - wget https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz 
   - tar xzvf apache-maven-3.6.3-bin.tar.gz
   - export PATH=`pwd`/apache-maven-3.6.3/bin:$PATH
+  - export MAVEN_OPTS="-Xmx2g -XX:ReservedCodeCacheSize=1g"
   - mvn -v
-script: travis_wait 60 ./dev/make-distribution.sh --name custom-spark --pip --tgz -Phive -Phive-thriftserver -Pmesos -Pyarn -Pkubernetes 
+
+script: ./dev/make-distribution.sh --name custom-spark --pip --tgz -Phive -Phive-thriftserver -Pmesos -Pyarn -Pkubernetes 
+
+deploy:
+  provider: releases
+  api_key: "$GH_TOKEN"
+  file_glob: true
+  file: spark-3.0.0-bin-custom-spark.tgz 
+  skip_cleanup: true
